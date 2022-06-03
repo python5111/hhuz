@@ -13,14 +13,25 @@ class Job_creat(models.Model):
         ("Andijon","Andijon"),
         ("Surxondaryo","Surxondaryo")
     ]
-    title=models.CharField(max_length=35)
+    STATUS=[
+        ("active", "active"),
+        ("passive","passive")
+    ]
+    job_title=models.CharField(max_length=35)
     citiy=models.CharField(max_length=11, choices=CITIYS, default="Toshkent")
-    salary=models.PositiveIntegerField()
-    age=models.PositiveIntegerField()
-    experience=models.PositiveIntegerField()
+    salary_min=models.PositiveIntegerField(null=True,blank=True)
+    salary_max=models.PositiveIntegerField(null=True,blank=True)
+    age=models.CharField(max_length=25,null=True)
+    experience=models.CharField(max_length=155,null = True)
     phone=models.CharField(max_length=13)
     decription=models.TextField()
     register_date=models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=8,choices=STATUS,default="active")
+    photo = models.ImageField(upload_to = 'media/',null = True,blank = True)
+    
+    
+    def __str__(self):
+        return self.job_title
 
 class Resume(models.Model):
     GENDER = [
@@ -36,12 +47,15 @@ class Resume(models.Model):
         ("Andijon","Andijon"),
         ("Surxondaryo","Surxondaryo")
     ]
-    full_name=models.CharField(max_length=35)
+    full_name=models.CharField(max_length=85)
     genders=models.CharField(max_length=5,choices=GENDER, default="Erkak")
     citiy=models.CharField(max_length=11, choices=CITIYS, default="Toshkent")
     phone=models.CharField(max_length=13)
-    birth_date=models.DateField()
+    birth_date=models.DateField(null=True)
     register_date=models.DateTimeField(auto_now_add=True)
-    experience=models.PositiveIntegerField()
-    salary=models.PositiveIntegerField()
+    experience=models.PositiveIntegerField(null = True)
+    salary=models.PositiveIntegerField(null = True)
     decription=models.TextField()
+    
+    def __str__(self):
+        return self.full_name

@@ -16,7 +16,8 @@ def main_page(request):
     return render(request, 'mainapp/baces.html',context)
 
 
-
+def test1(request):
+    return render(request,'mainapp/temp.html')
 
 def job_details(request):
     return render(request, 'mainapp/job_details.html')
@@ -32,7 +33,12 @@ def single_blog(request):
     return render (request, 'mainapp/single-blog.html')
 
 def job_list(request):
-    return render (request, 'mainapp/job_listing.html')
+    job_lists = Job_creat.objects.all().order_by("-id")
+    
+    context = {
+        "job_lists" : job_lists 
+    }
+    return render (request, 'mainapp/job_listing.html',context)
 
 def contact_page(request):
     return render (request, 'mainapp/single-blog.html')

@@ -3,6 +3,7 @@ from django.urls import path
 from .import views
 
 
+
 urlpatterns = [
     path('',views.main_page,name="main"),
     path('job-d/',views.job_details, name='job_d'),
@@ -15,4 +16,6 @@ urlpatterns = [
     path('regis/', views.register_page, name="regis_p"),
     path('login/', views.login_page, name="login"),
     path('creat_ad/', views.login_page, name="creat"),
+    path('test/',views.test1,name="test"),
 ]
+
