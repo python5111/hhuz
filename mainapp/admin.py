@@ -11,4 +11,5 @@ from .models import *
 
 admin.site.register(Job_creat)
 admin.site.register(Resume)
+admin.site.register(Blog)
 

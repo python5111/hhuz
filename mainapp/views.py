@@ -19,11 +19,21 @@ def main_page(request):
 def test1(request):
     return render(request,'mainapp/temp.html')
 
-def job_details(request):
-    return render(request, 'mainapp/job_details.html')
+def job_details(request,pk):
+    job_detail = Job_creat.objects.get(id = pk)
+    
+    context = {
+        "job_detail" : job_detail 
+    }
+    
+    return render(request, 'mainapp/job_details.html',context)
 
 def blog_page(request):
-    return render (request, 'mainapp/blog.html')
+    blogs = Blog.objects.all().order_by("-id")
+    context = {
+        "blogs" : blogs
+    }
+    return render (request, 'mainapp/blog.html',context)
 
 
 def element_page(request):
